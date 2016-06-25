@@ -27,20 +27,9 @@ input{
     width: 15%;
 }
 select{
-
+  border-style: solid;
 font-size:16px;
     width: 15%;
-
-
-     padding: 5px;
-
-     line-height: 1;
-     border: 2px;
-     border-radius: 0;
-
-     -webkit-appearance: none;
-
-
 
 }
 div.upper {
