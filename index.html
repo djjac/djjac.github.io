@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+
+
+
+function myFunction() {
+var eenheid = null;
+  var aantaltxt = document.getElementById("aantaltxt");
+  var aantalin = document.getElementById("aantalin");
+  var plus = null;
+  var kratout = null;
+
+   if (aantalin.value == "16" )
+   { eenheid = 1440 ;
+     aantalin = 6;
+     kratout = " dozen "
+
+
+   } else{
+   eenheid = aantalin.value * 40;
+   aantalin = aantalin.value
+    kratout = " kratten "
+   }
+
+
+
+ if (aantaltxt.checkValidity() == false) {
+    document.getElementById("errtxt").innerHTML = aantaltxt.validationMessage;
+  } else { document.getElementById("errtxt").innerHTML = "";
+ }
+
+ //==============================================
+
+
+var  pallet  = Math.floor(aantaltxt.value / eenheid);
+if (pallet > 0){
+   palletxt = pallet + " pallet "
+} else palletxt = " "
+
+var antkrat = Math.floor ((aantaltxt.value - ( pallet * eenheid)) / aantalin);
+if (antkrat > 0 ){
+  if (pallet > 1) {plus = " + "}
+
+   antkratxt = plus + antkrat + kratout
+}else antkratxt= " "
+
+var antbak = aantaltxt.value - ( pallet * eenheid) - (antkrat * aantalin);
+if (antbak > 0 ){
+
+   antbaktxt = " + " + antbak + " bakken"
+}else antbaktxt= " "
+
+
+//====================================================
+
+
+
+var outputxt = palletxt + antkratxt + antbaktxt;
+
+
+
+document.getElementById("demo").innerHTML = outputxt;
+
+}
+</script>
+</head>
+
+<body>
+
+<div>Bereken aantal kratten</div>
+</br>
+<div id="demo"></div>
+</br>
+<div id="errtxt"></div>
+</br>
+
+
+<input id="aantaltxt" type="number" min="1" max="10000000" maxlength="6">
+
+
+<select id= "aantalin" >
+
+  <option value="6">6 in krat</option>
+  <option value="4">4 in krat</option>
+  <option value="16">1440 pallet</option>
+
+</select>
+
+</br></br>
+<button type="button" onclick="myFunction()">bereken</button>
+
+
+
+
+
+
+</body>
+</html>
