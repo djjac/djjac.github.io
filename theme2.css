@@ -27,8 +27,19 @@ input{
     width: 15%;
 }
 select{
-font-size:16px;
+  border-style:
     width: 15%;
+    background: transparent;
+
+     padding: 5px;
+     font-size: 16px;
+     line-height: 1;
+     border: 0;
+     border-radius: 0;
+
+     -webkit-appearance: none;
+
+
 
 }
 div.upper {
