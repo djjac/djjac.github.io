@@ -1,3 +1,5 @@
+// desktop
+
   body {
          font-size: 2rem;
          font-family: arial;
@@ -17,5 +19,5 @@ input{
 select{
 font-size:2rem;
     width: 10%;
-  
+
 }
