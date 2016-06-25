@@ -1,2 +1,2 @@
-# djjac.github.io
+http://djjac.github.io
 personal use
