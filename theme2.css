@@ -1,0 +1,21 @@
+  body {
+         font-size: 2rem;
+         font-family: arial;
+         text-align: center;
+
+  }
+
+button {
+font-size:2rem;
+  width: 10%;
+}
+input{
+
+  font-size:2rem;
+    width: 10%;
+}
+select{
+font-size:2rem;
+    width: 10%;
+    height: 20%;
+}
