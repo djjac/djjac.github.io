@@ -30,3 +30,4 @@ select{font-size:16px;width: 15%;}
 div.top{margin-left:7px;}
 div.upper { height:16px;}
 div.hoogte { font-size:14px;color:#6E6E6E; }
+div.err { font-size:14px;color:#ff0000; }
