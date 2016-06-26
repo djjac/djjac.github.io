@@ -28,15 +28,16 @@ var eenheid = null;
      aantalin = 6;
      kratout = " dozen";
      kratout_1 =" doos";
-     laag = 16
+     laag = 16;
    }
-   if (aantalin.value == "80" )
+
+   else if (aantalin.value == "80" )
    {
      eenheid = 80 ;
      aantalin = 1;
      kratout = " kratten";
      kratout_1 =" krat";
-     laag = 4
+     laag = 4;
    }
 
    else
@@ -65,7 +66,7 @@ var hoogte  = Math.floor(antkrat / laag);
 var hoogrest = antkrat - (hoogte * laag);
 var hoogteoke = "";
 if (hoogte > 0) {  hoogteoke = hoogte + " hoog "} else hoogte = "";
-if (hoogte > 0 ) { hoogrest= " + " + hoogrest + " krat"} else hoogrest = "";
+if (hoogte > 0 && hoogrest > 0 ) { hoogrest= " + " + hoogrest + " krat"} else hoogrest = "";
 
 
 if (pallet > 0){palletxt = pallet + " pallet "} else palletxt = " "
