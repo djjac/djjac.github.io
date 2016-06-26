@@ -65,11 +65,12 @@ var antbak  = aantaltxt.value - ( pallet * eenheid) - (antkrat * aantalin);
 var hoogte  = Math.floor(antkrat / laag);
 var hoogrest = antkrat - (hoogte * laag);
 var hoogteoke = "";
+var dooskrat = "";
+
+if (hoogrest == 1) {dooskrat = kratout_1} else if (hoogrest > 1){dooskrat = kratout}
+
 if (hoogte > 0) {  hoogteoke = hoogte + " hoog "} else hoogte = "";
-if (hoogte > 0 && hoogrest > 0 ) { hoogrest= " + " + hoogrest +
-                        if hoogrest == 1 {kratout_1 } else
-                        if (hoogrest > 1){kratout}
-                      } else hoogrest = "";
+if (hoogte > 0 && hoogrest > 0 ) { hoogrest= " + " + hoogrest + dooskrat } else hoogrest = "";
 
 
 if (pallet > 0){palletxt = pallet + " pallet "} else palletxt = " "
