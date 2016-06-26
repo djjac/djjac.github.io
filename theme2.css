@@ -4,7 +4,6 @@
          font-size: 16px;
          font-family: arial;
          text-align: center;
-
   }
 
   h1{
@@ -18,26 +17,16 @@
 
 button {
   font-size:16px;
-    width: 15%;
+  width: 15%;
   border-style: none;
- padding: 5px;
- background-color: #3399ff;
- text-decoration: none;
- color: white;
+  padding: 5px;
+  background-color: #3399ff;
+  text-decoration: none;
+  color: white;
 }
-input{
 
-  font-size:16px;
-    width: 15%;
-}
-select{
-
-font-size:16px;
-    width: 15%;
-
-}
+input{font-size:16px;width: 15%;}
+select{font-size:16px;width: 15%;}
 div.top{margin-left:7px;}
-div.upper {
-  height:16px;
-
-}
+div.upper { height:16px;}
+div.hoogte { font-size:14px;color:#6E6E6E; }

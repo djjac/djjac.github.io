@@ -19,48 +19,66 @@ var eenheid = null;
   var aantalin = document.getElementById("aantalin");
   var plus = null;
   var kratout = null;
+  var kratout_1 = null;
+
 
    if (aantalin.value == "16" )
-   { eenheid = 1440 ;
+   {
+     eenheid = 1440 ;
      aantalin = 6;
-     kratout = " dozen "
+     kratout = " dozen";
+     kratout_1 =" doos";
+   }
+   if (aantalin.value == "80" )
+   {
+     eenheid = 480 ;
+     aantalin = 6;
+     kratout = " kratten";
+     kratout_1 =" krat";
+   }
 
-
-   } else{
+   else
+   {
    eenheid = aantalin.value * 40;
-   aantalin = aantalin.value
-    kratout = " kratten "
+   aantalin = aantalin.value;
+   kratout = " kratten";
+   kratout_1 =" krat";
    }
 
 
 
  if (aantaltxt.checkValidity() == false) {
-    document.getElementById("errtxt").innerHTML = aantaltxt.validationMessage;
-  } else { document.getElementById("errtxt").innerHTML = "";
- }
+    document.getElementById("demo").innerHTML = aantaltxt.validationMessage;
+  } else {
+
 
  //==============================================
 
 
-var  pallet  = Math.floor(aantaltxt.value / eenheid);
-if (pallet > 0){
-   palletxt = pallet + " pallet "
-} else palletxt = " "
-
+var pallet  = Math.floor(aantaltxt.value / eenheid);
 var antkrat = Math.floor ((aantaltxt.value - ( pallet * eenheid)) / aantalin);
-if (antkrat > 0 ){
-  if (pallet > 1) {plus = " + "}
+var antbak  = aantaltxt.value - ( pallet * eenheid) - (antkrat * aantalin);
 
+if (pallet > 0){palletxt = pallet + " pallet "} else palletxt = " "
+
+if (pallet > 0) {plus = " + "}
+
+if (antkrat > 1 ){
    antkratxt = plus + antkrat + kratout
-}else antkratxt= " "
+ } else if (antkrat == 1 ) {
+      antkratxt = plus + antkrat + kratout_1
+    }
+    else antkratxt= " "
 
-var antbak = aantaltxt.value - ( pallet * eenheid) - (antkrat * aantalin);
-if (antbak > 0 ){
 
+if (antbak > 1 ){
    antbaktxt = " + " + antbak + " bakken"
-}else antbaktxt= " "
+} else if (antbak == 1 ) {
+   antbaktxt = " + " + antbak + " bak"
+}
+else antbaktxt= " "
 
-
+ }
 //====================================================
 
 
@@ -97,6 +115,7 @@ document.getElementById("demo").innerHTML = outputxt;
   <option value="6">6 in krat</option>
   <option value="4">4 in krat</option>
   <option value="16">1440 pallet</option>
+  <option value="6">80 pallet</option>
 
 </select>
 </div>
