@@ -23,7 +23,8 @@ button {
  color: white;
 }
 input{
- border-style:solid;
+
+ border-style:1px solid;
    font-size:16px;
     width: 50%;
 }
