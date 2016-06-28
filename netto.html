@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="theme2.css" >
+<link rel="stylesheet" type="text/css" href="theme1.css" media="screen and (max-width: 900px)">
+
+
+
+
+<script>
+
+
+
+function myFunction() {
+var eenheid = null;
+  var gewichtxt = document.getElementById("gewichxt");
+  var kratxt  = document.getElementById("kratxt");
+  var oppapierxt = document.getElementById("oppapierxt");
+
+
+ if (netotxt.checkValidity() == false ||kratxt.checkValidity() == false  || oppapier.checkValidity() == false ) {
+    document.getElementById("errtxt").innerHTML = aantaltxt.validationMessage;
+  } else {
+document.getElementById("errtxt").innerHTML = "";
+}//---end checkerr
+ //==============================================
+
+
+
+
+
+
+
+
+
+document.getElementById("netolbl").innerHTML = outneto;
+document.getElementById("gebruiklbl").innerHTML = outgebruik;
+}
+</script>
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+}
+
+li {
+    float: left;
+}
+
+li a {font-style: arial;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}
+</style>
+</head>
+
+<body>
+
+<h1>
+<div class="top">
+  <ul>
+    <li><a class="active" href="index.html">Home</a></li>
+    <li><a href="index.html">kratten</a></li>
+    <li><a href="netto.html">netto</a></li>
+
+  </ul>
+
+ </div>
+</h1>
+
+</br>
+<div>
+<div class="left"id="netolbl">00</div>
+
+</div>
+</br>
+<div  class="hoogte" id="hoogtxt"></div>
+
+</br>
+
+<div  class="err" id="errtxt"></div>
+
+<div class="inputs">
+<table style="width:100%;text-align:richt">
+
+<tr>
+<td style="text-align:right">Gewicht:</td><td style="text-align:left"> <input class="invoer" id="gewichtxt" type="number" min="1" max="100000" maxlength="5"></td>
+</tr>
+<tr>
+<td style="text-align:right">Kratten:</td><td style="text-align:left"> <input class="invoer" id="kratxt" type="number" min="1" max="50" maxlength="2"></td>
+</tr>
+<tr><td style="text-align:right">oppapier:</td> <td style="text-align:left"><input class= "invoer" id="oppapierxt" type="number" min="1" max="100000" maxlength="5">  </td>
+  </tr>
+<tr>
+<td></td><td style="text-align:left"><button type="button" onclick="myFunction()">bereken</button></td>
+</tr>
+</table>
+</div>
+
+
+
+
+</body>
+</html>
