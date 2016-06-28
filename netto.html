@@ -14,31 +14,38 @@
 
 
 function myFunction() {
-var eenheid = null;
-  var gewichtxt = document.getElementById("gewichxt");
-  var kratxt  = document.getElementById("kratxt");
-  var oppapierxt = document.getElementById("oppapierxt");
 
 
- if (netotxt.checkValidity() == false ||kratxt.checkValidity() == false  || oppapier.checkValidity() == false ) {
-    document.getElementById("errtxt").innerHTML = aantaltxt.validationMessage;
+
+ if (gewichtxt.checkValidity() == false) {
+    document.getElementById("errtxt").innerHTML = gewichtxt.validationMessage;
   } else {
 document.getElementById("errtxt").innerHTML = "";
 }//---end checkerr
  //==============================================
 
+var neto = gewichtxt.value - (1.7*kratxt.value)-18;
+
+var gebruik = oppapierxt.value - neto;
+
+//====================================================
+neto ="&nbsp;&nbsp;&nbsp;&nbsp;Neto: " + neto;
+if (gebruik > 0){
+gebruik = "</br>Gebruik: "+gebruik;}
+else {gebruik=" </br>Gebruik: 00";}
 
 
 
+document.getElementById("netolbl").innerHTML = neto + gebruik ;
 
 
-
-
-
-document.getElementById("netolbl").innerHTML = outneto;
-document.getElementById("gebruiklbl").innerHTML = outgebruik;
 }
 </script>
+
+
+
+
+
 
 </head>
 
@@ -55,20 +62,18 @@ document.getElementById("gebruiklbl").innerHTML = outgebruik;
 
  </div>
 </h1>
+<div  class="err" id="errtxt"></div>
+
+
 
 </br>
-<div>
-<div class="left"id="netolbl">00</div>
-
-</div>
+<div class="upper"id="netolbl"></div>
 </br>
 <div  class="hoogte" id="hoogtxt"></div>
 
 </br>
 
-<div  class="err" id="errtxt"></div>
 
-<div class="inputs">
 <table style="width:100%;text-align:richt">
 
 <tr>
@@ -83,7 +88,7 @@ document.getElementById("gebruiklbl").innerHTML = outgebruik;
 <td></td><td style="text-align:left"><button type="button" onclick="myFunction()">bereken</button></td>
 </tr>
 </table>
-</div>
+
 
 
 
