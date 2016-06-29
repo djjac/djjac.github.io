@@ -29,14 +29,14 @@ var neto = gewichtxt.value - (1.7*kratxt.value)-18;
 var gebruik = oppapierxt.value - neto;
 
 //====================================================
-neto ="&nbsp;&nbsp;&nbsp;&nbsp;Neto: " + neto;
+neto ="&nbsp;&nbsp;&nbsp;&nbsp;Neto: " + neto.toFixed(2);
 if (gebruik > 0){
-gebruik = "</br>Gebruik: "+gebruik;}
+gebruik = "</br>Gebruik: "+gebruik.toFixed;}
 else {gebruik=" </br>Gebruik: 00";}
 
 
 
-document.getElementById("netolbl").innerHTML = neto.toFixed(2)+ gebruik ;
+document.getElementById("netolbl").innerHTML = neto + gebruik ;
 
 
 }
