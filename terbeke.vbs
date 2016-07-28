@@ -69,8 +69,6 @@ inputdec= input/6
 if msgBox(output, vbretrycancel, inputdec & " dozen") = vbretry then
 Set WshShell = WScript.CreateObject ("WScript.Shell")
 WshShell.Run ("terbeke.vbs")
-
-else Quit
 end if
 
 
