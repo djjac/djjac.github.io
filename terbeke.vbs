@@ -66,7 +66,7 @@ output = pallet & doos & bakken
 inputdec= input/6
 
 
-if msgBox(output, vbretrycancel, inputdec & " dozen") = vbretry then
+if msgBox(output, vbretrycancel, input & " = " & inputdec & " dozen") = vbretry then
 Set WshShell = WScript.CreateObject ("WScript.Shell")
 WshShell.Run ("terbeke.vbs")
 end if
