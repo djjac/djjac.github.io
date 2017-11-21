@@ -1,0 +1,35 @@
+<head><title>aantal kratten</title><HTA:APPLICATION     APPLICATIONNAME=""  ICON="msiexec.exe"     SCROLL="no"     SINGLEINSTANCE="yes"     WINDOWSTATE="minimized"></head><style type="text/css">body { background-color: white; font-family: arial, sans-serif; font-size: 12pt;}
+</style>
+<script language="VBScript">
+    Sub berekenSub50gr   If IsNumeric(vooraad.value) and IsNumeric(aantal_k.value)  Then
+   vrd = vooraad.value   ank = aantal_k.value * 12   totaal = ank -vrd   t_input = Round((totaal * 0.1)/15,1)
+        Msgbox ( t_input & " kratten")    else     Msgbox ( "waardes moeten numeriek zijn")    end if    End Sub      '-------------------------------  Sub berekenSub70gr  If IsNumeric(vooraad.value) and IsNumeric(aantal_k.value)  Then   vrd = vooraad.value   ank = aantal_k.value * 6   totaal = ank -vrd   t_input = Round((totaal * 0.14)/15,1)
+        Msgbox ( t_input & " kratten")  else     Msgbox ( "waardes moeten numeriek zijn")    end if       End Sub    Sub clearSub
+   vooraad.value = ""   aantal_k.value = ""       End Sub'------------------------------- sub terbekesub   If IsNumeric(input.value) Then
+   pallet = input.value / 1440if pallet  > 0 thenpallet = Int(pallet)end if
+if pallet > 0 then plus =" +" else plus =" " 
+doos =  ( input.value - (pallet * 1440))/ 6doos = Int (doos) bakken =  input.value - (pallet * 1440 ) - doos * 6
+
+if pallet > 0 then pallet = pallet & " pallet"else pallet = ""end if
+
+if doos > 0 then if doos > 1 then hoog = doos/16hoog = Int (hoog) resthoog = doos - (hoog*16)
+hoog = hoog & " hoog"if resthoog > 0 thenresthoog = " + " & resthoog & " dozen" end if
+doos = plus & doos &  " dozen ( " & hoog &  resthoog  &  " )"else doos = plus & doos &  " doos" end ifelse doos = ""end if
+
+
+if bakken > 0 then if bakken > 1 then bakken = " + " & bakken & " bakken  " else bakken = " + " & bakken & " bak  " end ifelse bakken = ""end if
+output = pallet & doos & bakken  
+inputdec= input.value/6
+Msgbox output, ,inputdec & " dozen"
+
+elseMsgbox "waardes moeten numeriek zijn"end if
+end sub    
+</script>
+<body>
+<div  style=" border: 1px solid black; "><div style="width: 300px; border: 1px solid red; float: left"><p>aantal kratten <br/><input type="input" value="" name="aantal_k"></p><p>vooraad <br/><input type="input" value="" name="vooraad"  ></p>
+<input type="button" value="50 gram" name="run_button"  onClick="berekenSub50gr"><input type="button" value="70 gram" name="run_button3"  onClick="berekenSub70gr">
+<p>  <input type="button" value="clear" name="run_button2"  onClick="clearsub"></p></div>
+<div style="width: 300px; border: 1px solid black; float: left"><p>aantal bakken <br/><input type="input" value="" name="input"></p><p> <input type="button" value="bereken" name="run_terbeke"  onClick="terbekesub"> <input type="button" value="clear" name="run_button2"  onClick="clearsub"></p></div>
+</div><div style="width: 300px; border: 1px solid black; float: left">  <label for="info">Info: </label>  <textarea rows="5" cols="30" name="info" id="info">Lots of information.</textarea>  </div> 
+
+</body>
