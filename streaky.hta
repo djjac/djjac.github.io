@@ -16,6 +16,24 @@ body {
 	padding-left:150px;
 }
 
+#button {
+  
+  
+  border-style: none;
+  padding: 5px;
+  background-color: #3399ff;
+  text-decoration: none;
+  color: white;
+}
+input {
+   border-style: none;
+  text-decoration: none;
+}
+textarea {
+  border-style: none;
+  text-decoration: none;
+}
+
 
 </style>
 
@@ -119,9 +137,21 @@ end sub
    Sub berekenSub50gr
 	
 	
-	If IsNumeric(vooraad.value) and IsNumeric(aantal_k.value)  Then
-
+   If  IsNumeric(aantal_k.value)  Then
+   
+    
+	 
+   if vooraad.value = "" then
+   vrd = 0 
+   else  If IsNumeric(vooraad.value)   Then
+   
    vrd = vooraad.value
+   else 
+   Msgbox "waardes moeten numeriek zijn"
+   info.value =""
+   end if
+   end if
+   
    ank = aantal_k.value * 12
    totaal = ank -vrd
      k_input = Round((totaal * 0.1),1)
@@ -252,21 +282,21 @@ end sub
 
 aantal kratten <br/><input type="input" value="" name="aantal_k" onfocus="clearinfo"><br/>
 voorraad <br/><input type="input" value="" name="vooraad" onfocus="clearinfo"  ><br/><br/>
-<input type="button" value="50 gram" name="run_button"  onClick="berekenSub50gr">
-<input type="button" value="70 gram" name="run_button3"  onClick="berekenSub70gr">
+<input type="button" value="50 gram" name="run_button" id="button" onClick="berekenSub50gr">
+<input type="button" value="70 gram" name="run_button3" id="button" onClick="berekenSub70gr">
 
 </p>
 
 <p>  
-<input type="button" value="reset" name="run_button2"  onfocus="clearsub">
+<input type="button" value="reset" name="run_button2"  id="button" onfocus="clearsub">
 </p>
 </div>
 
 <div style="width: 300px; border: 0px solid black; float: left;padding:15">
 <p>aantal bakken <br/><input type="input" value="" name="input" onfocus="clearinfo2"></p>
 <p> 
-<input type="button" value="ter beke" name="run_terbeke"  onClick="terbekesub"> 
-<input type="button" value="6 in krat" name="run_6krat"  onClick="inkrat"> 
+<input type="button" value="1440" name="run_terbeke" id="button"  onClick="terbekesub"> 
+<input type="button" value="6 in krat" name="run_6krat" id="button" onClick="inkrat"> 
 
 </p>
 </div>
