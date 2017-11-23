@@ -133,6 +133,92 @@ end sub
 
 
 '#----------------------------------------------
+Sub inkrat4
+  vooraad.value = ""
+   aantal_k.value = ""
+If IsNumeric(input.value)  Then
+
+ pallet = input.value / 160
+ if pallet  > 0 then
+ pallet = Int(pallet)
+ end if
+
+if pallet > 0 then plus ="+ " else plus ="" 
+
+
+kratst =  ( input.value - (pallet * 160))/ 4
+krat = kratst
+krat = Int (krat) 
+bakken =  input.value - (pallet * 160 ) - krat * 6
+
+
+
+if pallet > 0 then 
+pallet = pallet & " pallet "
+ plus ="+ "
+else 
+pallet = ""
+ plus =" " 
+end if
+
+
+
+if krat > 0 then 
+if krat > 1 then 
+krat = plus & Round(krat,1) &  " kratten" 
+else 
+krat = plus & krat &  " krat " 
+end if
+else krat = ""
+end if
+
+if bakken > 0 then 
+if bakken > 1 then 
+bakken = " + " & bakken & " bakken  " 
+else 
+bakken = " + " & bakken & " bak  " 
+end if
+else bakken = ""
+end if
+
+
+
+'if kratst > 0 then 
+if kratst > 1 then 
+hoog = kratst/4
+hoog = Int (hoog) 
+resthoog = kratst - (hoog*4)
+
+hoog = hoog & " hoog"
+if resthoog > 0 then
+resthoog = " + " & Round (resthoog) & " kratten" 
+'end if
+
+kratst = plus & Round(kratst) &  " kratten (" & hoog &  resthoog  &  ")"
+else 
+kratst = plus & kratst &  " krat " 
+end if
+else kratst = ""
+end if
+
+output = pallet & kratst & bakken 
+
+
+info.value=output
+
+
+else	
+		
+		Msgbox "waardes moeten numeriek zijn"
+
+
+end if
+end sub
+
+
+
+'#----------------------------------------------
+
 
    Sub berekenSub50gr
 	
@@ -170,8 +256,20 @@ end sub
 	    
 '-------------------------------		
 Sub berekenSub70gr
-  If IsNumeric(vooraad.value) and IsNumeric(aantal_k.value)  Then
+ If  IsNumeric(aantal_k.value)  Then
+   
+    
+	 
+   if vooraad.value = "" then
+   vrd = 0 
+   else  If IsNumeric(vooraad.value)   Then
+   
    vrd = vooraad.value
+   else 
+   Msgbox "waardes moeten numeriek zijn"
+   info.value =""
+   end if
+   end if
    ank = aantal_k.value * 6
    totaal = ank -vrd
    k_input = Round((totaal * 0.14),1)
@@ -278,25 +376,27 @@ end sub
 <div  style=" border: 0px solid black; ">
 <div style="width: 300px; border: 0px solid red; float: left;padding:15">
 
-<p>
+
 
 aantal kratten <br/><input type="input" value="" name="aantal_k" onfocus="clearinfo"><br/>
 voorraad <br/><input type="input" value="" name="vooraad" onfocus="clearinfo"  ><br/><br/>
 <input type="button" value="50 gram" name="run_button" id="button" onClick="berekenSub50gr">
 <input type="button" value="70 gram" name="run_button3" id="button" onClick="berekenSub70gr">
 
-</p>
 
-<p>  
-<input type="button" value="reset" name="run_button2"  id="button" onfocus="clearsub">
-</p>
+
+
 </div>
 
 <div style="width: 300px; border: 0px solid black; float: left;padding:15">
-<p>aantal bakken <br/><input type="input" value="" name="input" onfocus="clearinfo2"></p>
+
+<p>
+<br/><br/>
+aantal bakken <br/><input type="input" value="" name="input" onfocus="clearinfo2"></p>
 <p> 
-<input type="button" value="1440" name="run_terbeke" id="button"  onClick="terbekesub"> 
-<input type="button" value="6 in krat" name="run_6krat" id="button" onClick="inkrat"> 
+<input type="button" value="1440"     name="run_terbeke" id="button"  onClick="terbekesub"> 
+<input type="button" value="6 in krat" name="run_6krat"  id="button" onClick="inkrat"> 
+<input type="button" value="4 in krat" name="run_6krat"  id="button" onClick="inkrat4"> 
 
 </p>
 </div>
@@ -304,8 +404,12 @@ voorraad <br/><input type="input" value="" name="vooraad" onfocus="clearinfo"  >
 </div>
 <div style="width: 900px; border: 0px solid black; float: left ;padding:15">
 		<label for="info"></label><br/>
-		<textarea style="overflow: auto;font-family: arial;width:450px"
- rows="10" cols="55" name="info" id="info"></textarea>
+		<textarea style="overflow: auto;font-family: arial;width:510px"
+ rows="10"  name="info" id="info"></textarea>
+ 
+ <p>  
+<input type="button" value="reset" name="run_button2"  id="button" onfocus="clearsub">
+</p>
 		</div>
 	
 
