@@ -1,5 +1,5 @@
 <head>
-<title>aantal kratten</title>
+<title>streaky</title>
 <HTA:APPLICATION
      APPLICATIONNAME=""
 	 ICON="msiexec.exe"
@@ -14,14 +14,20 @@ body {
 	font-family: arial, sans-serif;
 	font-size: 12pt;
 	padding-left:150px;
+	padding-top:50px;
 }
 
 #button {
-  
-  
-  border-style: none;
+   border-style: none;
   padding: 5px;
   background-color: #3399ff;
+  text-decoration: none;
+  color: white;
+}
+#reset {
+   border-style: none;
+  padding: 5px;
+  background-color: #AFB2B5;
   text-decoration: none;
   color: white;
 }
@@ -39,13 +45,12 @@ textarea {
 
 <script language="VBScript">
 
+foutmelding = "waardes moeten numeriek zijn."
 
 sub Window_Onload
-
 input.Focus
-
 end sub
-
+'---------------------------
 
 
 Sub inkrat
@@ -116,7 +121,7 @@ end if
 else kratst = ""
 end if
 
-output = pallet & kratst & bakken 
+output = " 6 in krat:"&vbNewline &vbNewline&" " & pallet & kratst & bakken
 
 
 info.value=output
@@ -124,7 +129,7 @@ info.value=output
 
 else	
 		
-		Msgbox "waardes moeten numeriek zijn"
+		Msgbox foutmelding
 
 
 end if
@@ -201,7 +206,8 @@ end if
 else kratst = ""
 end if
 
-output = pallet & kratst & bakken 
+output = " 4 in krat:" &vbNewline & vbNewline&" " & pallet & kratst & bakken
+ 
 
 
 info.value=output
@@ -209,7 +215,7 @@ info.value=output
 
 else	
 		
-		Msgbox "waardes moeten numeriek zijn"
+		Msgbox foutmelding
 
 
 end if
@@ -220,13 +226,9 @@ end sub
 '#----------------------------------------------
 
 
-   Sub berekenSub50gr
+   Sub berekenSub50gr	
 	
-	
-   If  IsNumeric(aantal_k.value)  Then
-   
-    
-	 
+   If  IsNumeric(aantal_k.value)  Then	 
    if vooraad.value = "" then
    vrd = 0 
    else  If IsNumeric(vooraad.value)   Then
@@ -242,13 +244,13 @@ end sub
    totaal = ank -vrd
      k_input = Round((totaal * 0.1),1)
    t_input = Round((totaal * 0.1)/15,1)
-
-    info.value = k_input&" kilo = "& t_input & " kratten"
    
+
+    info.value = " aantal 50 gram bakken: "&totaal& vbNewline & vbNewline &" "&k_input&" kilo = "& t_input & " kratten"
 		
 		else	
 		
-		Msgbox "waardes moeten numeriek zijn"
+		Msgbox foutmelding
 		
 		end if
     End Sub
@@ -257,9 +259,7 @@ end sub
 '-------------------------------		
 Sub berekenSub70gr
  If  IsNumeric(aantal_k.value)  Then
-   
-    
-	 
+ 	 
    if vooraad.value = "" then
    vrd = 0 
    else  If IsNumeric(vooraad.value)   Then
@@ -274,17 +274,11 @@ Sub berekenSub70gr
    totaal = ank -vrd
    k_input = Round((totaal * 0.14),1)
    t_input = Round((totaal * 0.14)/15,1)
-
-       
 		
-		info.value = k_input&" kilo = "& t_input & " kratten"
-		
-		else	
-		
-		Msgbox ( "waardes moeten numeriek zijn")
-		
-		end if
-	
+   info.value = " aantal 70 gram bakken: "&totaal& vbNewline & vbNewline &" "&k_input&" kilo = "& t_input & " kratten"	
+		else			
+		Msgbox foutmelding		
+		end if	
       End Sub	
 	  Sub clearSub
 
@@ -349,10 +343,10 @@ output = pallet & doos & bakken
 
 inputdec= Round(input.value/6)
 
-info.value =" " &inputdec & " dozen " &vbNewline &vbNewline &  output
+info.value =" aantal dozen: "& inputdec &vbNewline &vbNewline &  output
 
 else
-Msgbox "waardes moeten numeriek zijn"
+Msgbox foutmelding
 end if
 end sub
 	
@@ -408,7 +402,7 @@ aantal bakken <br/><input type="input" value="" name="input" onfocus="clearinfo2
  rows="10"  name="info" id="info"></textarea>
  
  <p>  
-<input type="button" value="reset" name="run_button2"  id="button" onfocus="clearsub">
+<input type="button" value="reset" name="run_button2"  id="reset" onfocus="clearsub">
 </p>
 		</div>
 	
