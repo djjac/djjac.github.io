@@ -2,7 +2,7 @@
 <title>streaky</title>
 <HTA:APPLICATION
      APPLICATIONNAME=""
-	 ICON="msiexec.exe"
+	 ICON="magnify.exe"
      SCROLL="no"
      SINGLEINSTANCE="yes"
      WINDOWSTATE="minimized"
@@ -22,14 +22,15 @@ body {
   padding: 5px;
   background-color: #3399ff;
   text-decoration: none;
-  color: white;
+  color:white
+  
 }
 #reset {
    border-style: none;
   padding: 5px;
   background-color: #AFB2B5;
   text-decoration: none;
-  color: white;
+
 }
 input {
    border-style: none;
@@ -46,6 +47,23 @@ textarea {
 <script language="VBScript">
 
 foutmelding = "waardes moeten numeriek zijn."
+
+
+'-------------------------
+
+Sub TextChange(KeyCode) 
+   If KeyCode = 13 then 
+       terbekesub
+   End If 
+ End Sub 
+
+
+ 
+
+
+
+
+'-------------------------
 
 sub Window_Onload
 input.Focus
@@ -103,7 +121,7 @@ end if
 
 
 
-'if kratst > 0 then 
+if kratst > 0 then 
 if kratst > 1 then 
 hoog = kratst/4
 hoog = Int (hoog) 
@@ -112,11 +130,11 @@ resthoog = kratst - (hoog*4)
 hoog = hoog & " hoog"
 if resthoog > 0 then
 resthoog = " + " & Round (resthoog) & " kratten" 
-'end if
+end if
 
 kratst = plus & Round(kratst) &  " kratten (" & hoog &  resthoog  &  ")"
 else 
-kratst = plus & kratst &  " krat " 
+kratst = plus & kratst &  " kraten " 
 end if
 else kratst = ""
 end if
@@ -188,7 +206,7 @@ end if
 
 
 
-'if kratst > 0 then 
+if kratst > 0 then 
 if kratst > 1 then 
 hoog = kratst/4
 hoog = Int (hoog) 
@@ -197,7 +215,7 @@ resthoog = kratst - (hoog*4)
 hoog = hoog & " hoog"
 if resthoog > 0 then
 resthoog = " + " & Round (resthoog) & " kratten" 
-'end if
+end if
 
 kratst = plus & Round(kratst) &  " kratten (" & hoog &  resthoog  &  ")"
 else 
@@ -386,7 +404,7 @@ voorraad <br/><input type="input" value="" name="vooraad" onfocus="clearinfo"  >
 
 <p>
 <br/><br/>
-aantal bakken <br/><input type="input" value="" name="input" onfocus="clearinfo2"></p>
+aantal bakken <br/><input type="input" value="" name="input" onfocus="clearinfo2" onkeypress="TextChange(window.event.keyCode)"></p>
 <p> 
 <input type="button" value="1440"     name="run_terbeke" id="button"  onClick="terbekesub"> 
 <input type="button" value="6 in krat" name="run_6krat"  id="button" onClick="inkrat"> 
