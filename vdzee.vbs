@@ -2,8 +2,8 @@
 datum = DATE()
 
 
-Const adOpenStatic = 3
-Const adLockOptimistic = 3
+Const adOpenStatic = 0
+Const adLockOptimistic = 1
 
 Set objConnection = CreateObject("ADODB.Connection")
 
@@ -33,16 +33,34 @@ aantal2.Open "SELECT SUM([Aantal verpakkingen]) as nog FROM Bestellingen WHERE [
 
 aantal2.MoveFirst
 
+
+   
+
+
 Do Until aantal2.EOF
   aantal2ok= aantal2.Fields(0).value
    aantal2.MoveNext
 Loop
+
+
+if  aantal2ok > 0 then 
+aantal2ok = aantal2ok
+else
+aantal2ok = 0
+end if
+
+
 aantal2.Close
 aantal.Close
 
-af= aantal1 - aantal2ok
-
- Wscript.Echo    datum & vbNewLine& vbNewLine& af &"/"&aantal1&" bakken af. "&vbNewLine& "Nog "& aantal2ok &" bakken. " 
-
 
 objConnection.Close	
+Set objConnection = Nothing
+
+
+
+af= aantal1 - aantal2ok
+Wscript.Echo    datum & vbNewLine& vbNewLine& af &"/"&aantal1&" bakken af "&vbNewLine& "Nog "& aantal2ok &" bakken. " 
+
+
+ 
