@@ -1,5 +1,5 @@
 <head>
-<title>streaky</title>
+<title>streaky v.1.2</title>
 <HTA:APPLICATION
      APPLICATIONNAME=""
 	 ICON="magnify.exe"
@@ -22,7 +22,8 @@ body {
   padding: 5px;
   background-color: #3399ff;
   text-decoration: none;
-  color:white
+  color:white;
+  width:70px;
   
 }
 #reset {
@@ -58,10 +59,6 @@ Sub TextChange(KeyCode)
  End Sub 
 
 
- 
-
-
-
 
 '-------------------------
 
@@ -69,7 +66,6 @@ sub Window_Onload
 input.Focus
 end sub
 '---------------------------
-
 
 Sub inkrat
   vooraad.value = ""
@@ -86,6 +82,7 @@ if pallet > 0 then plus ="+ " else plus =""
 
 kratst =  ( input.value - (pallet * 240))/ 6
 krat = kratst
+
 krat = Int (krat) 
 bakken =  input.value - (pallet * 240 ) - krat * 6
 
@@ -104,6 +101,7 @@ end if
 if krat > 0 then 
 if krat > 1 then 
 krat = plus & Round(krat,1) &  " kratten" 
+
 else 
 krat = plus & krat &  " krat " 
 end if
@@ -129,10 +127,10 @@ resthoog = kratst - (hoog*4)
 
 hoog = hoog & " hoog"
 if resthoog > 0 then
-resthoog = " + " & Round (resthoog) & " kratten" 
+resthoog = " + " & int (resthoog) & " kratten" 
 end if
 
-kratst = plus & Round(kratst) &  " kratten (" & hoog &  resthoog  &  ")"
+kratst = plus & Int(kratst) &  " kratten (" & hoog &  resthoog  &  ")"
 else 
 kratst = plus & kratst &  " kraten " 
 end if
@@ -168,13 +166,10 @@ If IsNumeric(input.value)  Then
 
 if pallet > 0 then plus ="+ " else plus ="" 
 
-
 kratst =  ( input.value - (pallet * 160))/ 4
 krat = kratst
 krat = Int (krat) 
-bakken =  input.value - (pallet * 160 ) - krat * 6
-
-
+bakken =  input.value - (pallet * 160 ) - krat * 4
 
 if pallet > 0 then 
 pallet = pallet & " pallet "
@@ -184,11 +179,9 @@ pallet = ""
  plus =" " 
 end if
 
-
-
 if krat > 0 then 
 if krat > 1 then 
-krat = plus & Round(krat,1) &  " kratten" 
+krat = plus & Int(krat) &  " kratten" 
 else 
 krat = plus & krat &  " krat " 
 end if
@@ -204,7 +197,82 @@ end if
 else bakken = ""
 end if
 
+if kratst > 0 then 
+if kratst > 1 then 
+hoog = kratst/4
+hoog = Int (hoog) 
+resthoog = kratst - (hoog*4)
 
+hoog = hoog & " hoog"
+if resthoog > 0 then
+resthoog = " + " & Int (resthoog) & " kratten" 
+end if
+
+kratst = plus & Int(kratst) &  " kratten (" & hoog &  resthoog  &  ")"
+else 
+kratst = plus & kratst &  " krat " 
+end if
+else kratst = ""
+end if
+
+output = " 4 in krat:" &vbNewline & vbNewline&" " & pallet & kratst & bakken
+ 
+info.value=output
+
+else	
+		
+		Msgbox foutmelding
+
+
+end if
+end sub
+
+
+
+'#----------------------------------------------
+
+Sub inkrat16
+  vooraad.value = ""
+   aantal_k.value = ""
+If IsNumeric(input.value)  Then
+
+ pallet = input.value / 640
+ if pallet  > 0 then
+ pallet = Int(pallet)
+ end if
+
+if pallet > 0 then plus ="+ " else plus ="" 
+
+kratst =  ( input.value - (pallet * 640))/ 16
+krat = kratst
+krat = Int (krat) 
+bakken =  input.value - (pallet * 640 ) - krat * 16
+
+if pallet > 0 then 
+pallet = pallet & " pallet "
+ plus ="+ "
+else 
+pallet = ""
+ plus =" " 
+end if
+
+if krat > 0 then 
+if krat > 1 then 
+krat = plus & Int(krat) &  " kratten" 
+else 
+krat = plus & krat &  " krat " 
+end if
+else krat = ""
+end if
+
+if bakken > 0 then 
+if bakken > 1 then 
+bakken = " + " & bakken & " bakken  " 
+else 
+bakken = " + " & bakken & " bak  " 
+end if
+else bakken = ""
+end if
 
 if kratst > 0 then 
 if kratst > 1 then 
@@ -214,22 +282,19 @@ resthoog = kratst - (hoog*4)
 
 hoog = hoog & " hoog"
 if resthoog > 0 then
-resthoog = " + " & Round (resthoog) & " kratten" 
+resthoog = " + " & Int (resthoog) & " kratten" 
 end if
 
-kratst = plus & Round(kratst) &  " kratten (" & hoog &  resthoog  &  ")"
+kratst = plus & Int(kratst) &  " kratten (" & hoog &  resthoog  &  ")"
 else 
 kratst = plus & kratst &  " krat " 
 end if
 else kratst = ""
 end if
 
-output = " 4 in krat:" &vbNewline & vbNewline&" " & pallet & kratst & bakken
+output = " 16 in krat:" &vbNewline & vbNewline&" " & pallet & kratst & bakken
  
-
-
 info.value=output
-
 
 else	
 		
@@ -402,11 +467,12 @@ voorraad <br/><input type="input" value="" name="vooraad" onfocus="clearinfo"  >
 
 <div style="width: 300px; border: 0px solid black; float: left;padding:15">
 
-<p>
-<br/><br/>
-aantal bakken <br/><input type="input" value="" name="input" onfocus="clearinfo2" onkeypress="TextChange(window.event.keyCode)"></p>
-<p> 
+
+
+aantal bakken <br/><input type="input" value="" name="input" onfocus="clearinfo2" onkeypress="TextChange(window.event.keyCode)"></br></br>
+ 
 <input type="button" value="1440"     name="run_terbeke" id="button"  onClick="terbekesub"> 
+<input type="button" value="16 in krat" name="run_16krat"  id="button" onClick="inkrat16"> <br/><br/>
 <input type="button" value="6 in krat" name="run_6krat"  id="button" onClick="inkrat"> 
 <input type="button" value="4 in krat" name="run_6krat"  id="button" onClick="inkrat4"> 
 
