@@ -1,5 +1,5 @@
 <head>
-<title>streaky v.1.2</title>
+<title>streaky v.1.3</title>
 <HTA:APPLICATION
      APPLICATIONNAME=""
 	 ICON="magnify.exe"
@@ -48,7 +48,7 @@ textarea {
 <script language="VBScript">
 
 foutmelding = "waardes moeten numeriek zijn."
-
+foutmelding2 = "waarde is al berekent"
 
 '-------------------------
 
@@ -65,6 +65,8 @@ Sub TextChange(KeyCode)
 sub Window_Onload
 input.Focus
 end sub
+state = 0
+
 '---------------------------
 
 Sub inkrat
@@ -307,7 +309,159 @@ end sub
 
 
 '#----------------------------------------------
+Sub inkrat42
+  vooraad.value = ""
+   aantal_k.value = ""
+If IsNumeric(input.value)  Then
 
+ pallet = input.value / 1680
+ if pallet  > 0 then
+ pallet = Int(pallet)
+ end if
+
+if pallet > 0 then plus ="+ " else plus ="" 
+
+kratst =  ( input.value - (pallet * 1680))/ 42
+krat = kratst
+krat = Int (krat) 
+bakken =  input.value - (pallet * 1680 ) - krat * 42
+
+if pallet > 0 then 
+pallet = pallet & " pallet "
+ plus ="+ "
+else 
+pallet = ""
+ plus =" " 
+end if
+
+if krat > 0 then 
+if krat > 1 then 
+krat = plus & Int(krat) &  " kratten" 
+else 
+krat = plus & krat &  " krat " 
+end if
+else krat = ""
+end if
+
+if bakken > 0 then 
+if bakken > 1 then 
+bakken = " + " & bakken & " bakken  " 
+else 
+bakken = " + " & bakken & " bak  " 
+end if
+else bakken = ""
+end if
+
+if kratst > 0 then 
+if kratst > 1 then 
+hoog = kratst/4
+hoog = Int (hoog) 
+resthoog = kratst - (hoog*4)
+
+hoog = hoog & " hoog"
+if resthoog > 0 then
+resthoog = " + " & Int (resthoog) & " kratten" 
+end if
+
+kratst = plus & Int(kratst) &  " kratten (" & hoog &  resthoog  &  ")"
+else 
+kratst = plus & kratst &  " krat " 
+end if
+else kratst = ""
+end if
+
+output = " 42 in krat:" &vbNewline & vbNewline&" " & pallet & kratst & bakken
+ 
+info.value=output
+
+else	
+		
+		Msgbox foutmelding
+
+
+end if
+end sub
+
+
+
+'#----------------------------------------------
+
+Sub inkrat35
+  vooraad.value = ""
+   aantal_k.value = ""
+If IsNumeric(input.value)  Then
+
+ pallet = input.value / 1400
+ if pallet  > 0 then
+ pallet = Int(pallet)
+ end if
+
+if pallet > 0 then plus ="+ " else plus ="" 
+
+kratst =  ( input.value - (pallet * 1400))/ 35
+krat = kratst
+krat = Int (krat) 
+bakken =  input.value - (pallet * 1400 ) - krat * 35
+
+if pallet > 0 then 
+pallet = pallet & " pallet "
+ plus ="+ "
+else 
+pallet = ""
+ plus =" " 
+end if
+
+if krat > 0 then 
+if krat > 1 then 
+krat = plus & Int(krat) &  " kratten" 
+else 
+krat = plus & krat &  " krat " 
+end if
+else krat = ""
+end if
+
+if bakken > 0 then 
+if bakken > 1 then 
+bakken = " + " & bakken & " bakken  " 
+else 
+bakken = " + " & bakken & " bak  " 
+end if
+else bakken = ""
+end if
+
+if kratst > 0 then 
+if kratst > 1 then 
+hoog = kratst/4
+hoog = Int (hoog) 
+resthoog = kratst - (hoog*4)
+
+hoog = hoog & " hoog"
+if resthoog > 0 then
+resthoog = " + " & Int (resthoog) & " kratten" 
+end if
+
+kratst = plus & Int(kratst) &  " kratten (" & hoog &  resthoog  &  ")"
+else 
+kratst = plus & kratst &  " krat " 
+end if
+else kratst = ""
+end if
+
+output = " 35 in krat:" &vbNewline & vbNewline&" " & pallet & kratst & bakken
+ 
+info.value=output
+
+else	
+		
+		Msgbox foutmelding
+
+
+end if
+end sub
+
+
+
+'#----------------------------------------------
 
    Sub berekenSub50gr	
 	
@@ -363,7 +517,9 @@ Sub berekenSub70gr
 		Msgbox foutmelding		
 		end if	
       End Sub	
+	  
 	  Sub clearSub
+state = 0
 
    vooraad.value = ""
    aantal_k.value = ""
@@ -437,12 +593,43 @@ end sub
 	sub clearinfo	
 	   info.value=""
 	   input.value=""
+	   
 	end sub
 	
 	sub clearinfo2	
 	   info.value=""
 	   aantal_k.value=""
 	   vooraad.value=""
+	end sub
+
+	sub mal
+	If IsNumeric(input.value) Then
+	if state= 0 then
+	 input.value = input.value * 6
+	 state=1
+	
+
+	 else 
+	 Msgbox foutmelding2
+	 end if
+	 
+	 else
+Msgbox foutmelding
+end if
+	end sub
+	
+sub deel
+If IsNumeric(input.value) Then
+	if state= 0 then
+	 input.value = input.value / 6
+	 state =1
+	
+	 else 
+	 Msgbox foutmelding2
+	 end if
+	 else
+Msgbox foutmelding
+end if
 	end sub
 	
 
@@ -451,9 +638,14 @@ end sub
 <body>
 
 <div  style=" border: 0px solid black; ">
+
+<div style="width: 150px; border: 0px solid black; float: right;padding:2; padding-top:-2">
+<input type="button" value="X6"     name="run_mal6" id="reset"  onClick="mal"> 
+<input type="button" value=":6"     name="run_mal6" id="reset"  onClick="deel"> <br/> <br/>
+<input type="button" value="clear" name="run_button3"  id="reset" onfocus="clearsub">
+</div>
+
 <div style="width: 300px; border: 0px solid red; float: left;padding:15">
-
-
 
 aantal kratten <br/><input type="input" value="" name="aantal_k" onfocus="clearinfo"><br/>
 voorraad <br/><input type="input" value="" name="vooraad" onfocus="clearinfo"  ><br/><br/>
@@ -465,16 +657,22 @@ voorraad <br/><input type="input" value="" name="vooraad" onfocus="clearinfo"  >
 
 </div>
 
+
 <div style="width: 300px; border: 0px solid black; float: left;padding:15">
 
+aantal bakken <br/><input type="input" value="" name="input" onfocus="clearinfo2" onkeypress="TextChange(window.event.keyCode)">
 
 
-aantal bakken <br/><input type="input" value="" name="input" onfocus="clearinfo2" onkeypress="TextChange(window.event.keyCode)"></br></br>
+</br></br>
  
 <input type="button" value="1440"     name="run_terbeke" id="button"  onClick="terbekesub"> 
-<input type="button" value="16 in krat" name="run_16krat"  id="button" onClick="inkrat16"> <br/><br/>
+<input type="button" value="16 in krat" name="run_16krat"  id="button" onClick="inkrat16"> 
+<input type="button" value="35 in krat" name="run_35krat"  id="button" onClick="inkrat35"> 
+ <br/><br/>
 <input type="button" value="6 in krat" name="run_6krat"  id="button" onClick="inkrat"> 
 <input type="button" value="4 in krat" name="run_6krat"  id="button" onClick="inkrat4"> 
+<input type="button" value="42 in krat" name="run_42krat"  id="button" onClick="inkrat42"> 
+
 
 </p>
 </div>
