@@ -11,7 +11,7 @@ xmlhttp.onreadystatechange = function() {
         document.getElementById("demo").innerHTML = myObj.symbol;
     }
 };
-xmlhttp.open("GET", "https://api.binance.com/api/v1/ticker/price?symbol=LTCBTC", true);
+xmlhttp.open("GET", "https://cors-anywhere.herokuapp.com/https://api.binance.com/api/v1/ticker/price?symbol=LTCBTC", true);
 xmlhttp.send();
 
    
