@@ -1,0 +1,22 @@
+<html>
+<body>
+</body>
+<script>
+
+
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var myObj = JSON.parse(this.responseText);
+        document.getElementById("demo").innerHTML = myObj.symbol;
+    }
+};
+xmlhttp.open("GET", "https://api.binance.com/api/v1/ticker/price?symbol=LTCBTC", true);
+xmlhttp.send();
+
+   
+
+</script>
+
+<p id="demo"></p>
+</html>
