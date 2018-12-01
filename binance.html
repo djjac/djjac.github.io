@@ -1,22 +1,46 @@
 <html>
-<body>
-</body>
+<body style= "
+background-color: #151926;
+font-family: 'Arial';
+font-size: 12px;
+font-weight: normal;
+line-height: 1.5;
+color: #ffff !important">
+
+
+    
+
 <script>
 
-
+var coin ="BCHSV"
+var pair ="BTC"
+var paircoin=coin+"/ "+pair
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var myObj = JSON.parse(this.responseText);
-        document.getElementById("demo").innerHTML = myObj.symbol;
+        document.getElementById("pair").innerHTML = myObj.symbol;
+        document.getElementById("price").innerHTML = myObj.price;
+
     }
 };
-xmlhttp.open("GET", "https://cors-anywhere.herokuapp.com/https://api.binance.com/api/v1/ticker/price?symbol=LTCBTC", true);
+xmlhttp.open("GET", "https://cors-anywhere.herokuapp.com/https://api.binance.com/api/v1/ticker/price?symbol="+coin+pair, true);
 xmlhttp.send();
-
    
-
 </script>
 
-<p id="demo"></p>
+<div style="padding-left:15%;background-color: black"> <label id="pair" style="padding-right: 2%"></label>
+      <label id ="price"></label>
+</div>
+
+
+<div style="padding-left:30%;padding-top: 2%">
+
+    <label id="pair" style=""></label>
+    <label id ="price"></label>
+
+<input value="" id="lastprice" style="width:80">
+
+<div>
+</body>
 </html>
