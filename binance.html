@@ -3,7 +3,7 @@
 <body style= "
 background-color: #151926;
 font-family: 'Arial';
-font-size: 20px;
+font-size: 15px;
 font-weight: normal;
 line-height: 1.5;
 color: #ffff !important">
@@ -17,6 +17,8 @@ var coin ="BCHSV"
 var pair ="BTC"
 var paircoin=coin+"/ "+pair
 var xmlhttp = new XMLHttpRequest();
+
+
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var myObj = JSON.parse(this.responseText);
@@ -27,11 +29,31 @@ xmlhttp.onreadystatechange = function() {
 };
 xmlhttp.open("GET", "https://cors-anywhere.herokuapp.com/https://api.binance.com/api/v1/ticker/price?symbol="+coin+pair, true);
 xmlhttp.send();
+
+
+
+var btcprice= new XMLHttpRequest();
+
+btcprice.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var myObj = JSON.parse(this.responseText);
+       
+        document.getElementById("btcprice").innerHTML = myObj.price;
+
+    }
+};
+btcprice.open("GET", "https://cors-anywhere.herokuapp.com/https://api.binance.com/api/v1/ticker/price?symbol=BTCUSDT", true);
+btcprice.send();
    
 </script>
 
-<div style="background-color: black"> <label id="pair" style=""></label>
+<div style="background-color: black;width:100%"> 
+      <label style="color:goldenrod" id="pair" ></label>
       <label id ="price"></label>
+    <div style="float: right;"> 
+        <label style="color:goldenrod">BTC</label>
+      <label id ="btcprice" ></label>
+    </div>
 </div>
 
 
