@@ -24,7 +24,8 @@ xmlhttp.onreadystatechange = function() {
         var myObj = JSON.parse(this.responseText);
         document.getElementById("pair").innerHTML = myObj.symbol;
         document.getElementById("price").innerHTML = myObj.price;
-
+var usdpr=myObj.price;
+btcprice()
     }
 };
 xmlhttp.open("GET", "https://cors-anywhere.herokuapp.com/https://api.binance.com/api/v1/ticker/price?symbol="+coin+pair, true);
@@ -37,19 +38,34 @@ var btcprice= new XMLHttpRequest();
 btcprice.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var myObj = JSON.parse(this.responseText);
+       var btc_price = myObj.price;
+       var result_btc = parseFloat(btc_price).toFixed(2);
+        document.getElementById("btcprice").innerHTML = result_btc;
        
-        document.getElementById("btcprice").innerHTML = myObj.price;
-
-    }
+      
+        usd();
+          }
 };
 btcprice.open("GET", "https://cors-anywhere.herokuapp.com/https://api.binance.com/api/v1/ticker/price?symbol=BTCUSDT", true);
 btcprice.send();
+
+  function usd(){
+var usdok = document.getElementById("btcprice").innerHTML;
+var coinprice = document.getElementById("price").innerHTML;
+
+var usdresult = usdok*coinprice;
+var result = usdresult.toFixed (2);
+   document.getElementById("priceusd").innerHTML = result;
+          
+ }
+
    
 </script>
 
 <div style="background-color: black;width:100%"> 
       <label style="color:goldenrod" id="pair" ></label>
       <label id ="price"></label>
+      <label id ="priceusd"></label>
     <div style="float: right;"> 
         <label style="color:goldenrod">BTC</label>
       <label id ="btcprice" ></label>
@@ -57,7 +73,7 @@ btcprice.send();
 </div>
 
 
-<div style="padding-top: 2% ;text-align: center">
+<div style="padding-top: 2% ;text-align: left">
 
     <label id="pair" style=""></label>
     <label id ="price"></label>
